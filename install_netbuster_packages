@@ -49,7 +49,7 @@ rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
 TARGET=/etc/dhcp/dhclient.conf
 rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
 TARGET=/etc/default/isc-dhcp-server
-rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
+rm -f $TARGET && ln -s $OVERLAY$TARGET$RPI_VER $TARGET
 
 # Configure DHCPcd
 TARGET=/etc/dhcpcd.conf
