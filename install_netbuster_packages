@@ -12,9 +12,21 @@ set -e
 # TODO: remove unnecessary packages like X
 # TODO: come up with a reset/power loss tolerant methdology (ro root for example)
 
+# RPi HW version
+# Supports RPi4 and RPi3
+RPI_VER=3
+
+if [ $RPI_VER == 4 ]
+then echo "Installing Netbuster for RPi4 HW assuming on Raspbian Buster.."
+else echo "Installing Netbuster for RPi3 HW assuming on Raspbian Jessie.."
+fi
+
 ##############################################################################
-# Networking, DHCP server, access point
+# Networking, SSH, DHCP server, access point
 ##############################################################################
+
+# Install SSH for remote access
+systemctl enable ssh
 
 # NOTE: This version of hostapd is v0.8.x which does not support the rpi3 internal wifi
 # for that you will need to go here: http://w1.fi/hostapd and build version 2.6 to add
@@ -27,8 +39,11 @@ apt-get install -y libnl-3-dev
 # Install bridge utililities (e.g. brctl)
 apt-get install -y bridge-utils
 
+# RPi4 raspbian buster has dhcpcd already installed
+if [ $RPI_VER == 3 ]
 apt-get install -y \
   hostapd isc-dhcp-server
+fi
 
 # Configure DHCPd
 TARGET=/etc/dhcp/dhcpd.conf
@@ -40,11 +55,14 @@ rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
 
 # Configure DHCPcd
 TARGET=/etc/dhcpcd.conf
-rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
+rm -f $TARGET && ln -s $OVERLAY$TARGET$RPI_VER $TARGET
 
+# RPi4 uses dhcpcd.conf to setup all interfaces
+if [ $RPI_VER == 3 ]
 # Set network interface config
 TARGET=/etc/network/interfaces
 rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
+fi
 
 # hostapd config
 TARGET=/etc/hostapd/hostapd.conf
