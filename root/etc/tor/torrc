@@ -13,12 +13,14 @@
 ## https://www.torproject.org/docs/faq#torrc
 
 # old values from verison 0.2.xx not required anymore
+VirtualAddrNetworkIPv4 10.192.0.0/10
 #VirtualAddrNetwork 10.192.0.0/10
-#AutomapHostsSuffixes .onion,.exit
-#AutomapHostsOnResolve 1
+AutomapHostsSuffixes .onion,.exit
+AutomapHostsOnResolve 1
 #TransPort 9040
+TransPort 192.168.133.7:9040
 #TransListenAddress 192.168.133.7
-#DNSPort 53
+DNSPort 192.168.133.7:5353
 #DNSListenAddress 192.168.133.7
 
 ## Tor opens a SOCKS proxy on port 9050 by default -- even if you don't
@@ -44,9 +46,10 @@
 ## may provide sensitive information to an attacker who obtains the logs.
 ##
 ## Send all messages of level 'notice' or higher to @LOCALSTATEDIR@/log/tor/notices.log
-Log notice file /var/log/tor/notices.log
+Log info file /var/log/tor/info.log
+#Log notice file /var/log/tor/notices.log
 ## Send every possible message to @LOCALSTATEDIR@/log/tor/debug.log
-#Log debug file @LOCALSTATEDIR@/log/tor/debug.log
+#Log debug file /var/log/tor/debug.log
 ## Use the system log instead of Tor's logfiles
 #Log notice syslog
 ## To send all messages to stderr:
