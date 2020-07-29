@@ -12,6 +12,8 @@ To join our discord community go here:https://discord.gg/mDsfSmp Our main websit
 
 o7.28.2o2o
 Updated support for TOR v0.4.2.7
+======================
+Updated to handle latest tor client
 
 o9.23.2o17
 WAN Transport Selector
