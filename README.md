@@ -10,6 +10,9 @@
 NetBuster is a device that will create a plug-and-play anonymous and encrypted tunnel for all your devices to use on the go.  
 To join our discord community go here:https://discord.gg/mDsfSmp Our main website contains tutorials, parts lists and more.
 
+o7.28.2o2o
+Updated support for TOR v0.4.2.7
+
 o9.23.2o17
 WAN Transport Selector
 ======================
