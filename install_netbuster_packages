@@ -50,6 +50,7 @@ TARGET=/etc/dhcp/dhclient.conf
 rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
 TARGET=/etc/default/isc-dhcp-server
 rm -f $TARGET && ln -s $OVERLAY$TARGET$RPI_VER $TARGET
+systemctl enable isc-dhcp-server
 
 # Configure DHCPcd
 TARGET=/etc/dhcpcd.conf
@@ -102,15 +103,6 @@ if [ $RPI_VER == 3 ]
 then TARGET=/usr/sbin/hostapd
 rm -f $TARGET && ln -s $OVERLAY$TARGET $TARGET
 fi
-
-# Enable daemons on startup
-# Unmask for RPi4
-if [ $RPI_VER == 4 ]
-then systemctl unmask hostapd
-fi
-update-rc.d hostapd enable 
-update-rc.d isc-dhcp-server enable
-
 
 ##############################################################################
 # Database

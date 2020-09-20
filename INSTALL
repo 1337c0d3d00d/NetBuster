@@ -3,19 +3,19 @@ Welcome to the NetBuster..
 1) Download Raspbian Jessie with Desktop and extract the .img from the .zip
 https://www.raspberrypi.org/downloads/raspbian
 
-2) Use SDFormatter to format the SDHC (sd card)
+2) Use SDFormatter to format the SDHC (sd card) for FAT32 the default
 https://www.sdcard.org/downloads/formatter_4
 
 3) Use Rufus to burn the .img and make it bootable to the SHDC
 http://rufus.akeo.ie 
 
-4) Connect keyboard and plug in an ethernet cable into the Rpi3. It will auto DCHP an IP on your local network.
+4) Plug in the microSD into the RPi4 and boot it, setup the country/language but skip the rest setup specifically the networking.  Connect keyboard and plug in an ethernet cable into the RPi4. It will auto DCHP an IP on your local network.
 
 5) Pull the Netbuster code from the repo as git is already installed in the distro.
 cd /home/pi 
 git clone https://github.com/1337c0d3d00d/NetBuster.git 
 
-6) Initalize the system with the initial setup script to setup the Rpi3 then reboot 
+6) If running an RPi4 then skip this step, if a RPi3 then do this to initalize the system with the initial setup script to setup the RPi3 then reboot 
 cd NetBuster 
 ./initial_setup 
 reboot 
@@ -38,11 +38,8 @@ reboot
   - Then just browse to www.whatsmyip.org to see your IP is from some foreign country to verify it is working.
   - Continue to browse securely.
 
-9) [OPTIONAL]: If you want ssh access to the Pi then do this
-  - Launch Raspberry Pi Configuration from the Preferences menu
-  - Navigate to the Interfaces tab
-  - Select Enabled next to SSH
-  - Click OK
+9) [NOTE]: ssh access to the Pi is enabled by default
+  - If you have the ethernet cable plugged in you can SSH then to eth0 static assigned to 192.168.1.170
 
 See the FAQ for additional usage such as using the L2P network and other features.
 
